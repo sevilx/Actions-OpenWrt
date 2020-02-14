@@ -119,6 +119,12 @@ jobs:
         name: OpenWrt_bin
         path: openwrt/bin
 
+    - name: Upload Combined Image
+      uses: actions/upload-artifact@v1
+      with:
+        name: openwrt-x86-64-combined-squashfs.img
+        path: openwrt/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.img.gz
+
     - name: 整理文件
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
