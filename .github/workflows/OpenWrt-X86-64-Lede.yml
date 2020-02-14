@@ -129,18 +129,16 @@ jobs:
       with:
         name: OpenWrt_directory
         path: openwrt/bin
-
-    - name: Upload Combined Image
-      uses: actions/upload-artifact@v1
-      with:
-        name: openwrt-x86-64-combined-squashfs.img
-        path: openwrt/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.img.gz
-
     - name: 整理文件
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd openwrt/bin/targets/*/*
-        rm -rf packages
-        echo "::set-env name=FIRMWARE::$(pwd)"
-        echo "::set-output name=status::success"
+          rm -rf ./artifact/
+          mkdir -p ./artifact/
+          find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
+          find openwrt/bin/targets/ -name "*uefi*img*" | xargs -i mv -f {} ./artifact/
+    - name: 上传固件
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt-Lede_firmware
+        path: ./artifact/
