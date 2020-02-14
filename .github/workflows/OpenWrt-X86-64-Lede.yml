@@ -144,10 +144,3 @@ jobs:
         rm -rf packages
         echo "::set-env name=FIRMWARE::$(pwd)"
         echo "::set-output name=status::success"
-
-    - name: 上传固件
-      uses: actions/upload-artifact@master
-      if: steps.organize.outputs.status == 'success' && !cancelled()
-      with:
-        name: OpenWrt-Lede
-        path: ${{ env.FIRMWARE }}
