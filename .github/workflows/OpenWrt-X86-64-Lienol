@@ -136,5 +136,5 @@ jobs:
     - name: 上传固件
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt_firmware
+        name: OpenWrt_Lienol_firmware
         path: ./artifact/
