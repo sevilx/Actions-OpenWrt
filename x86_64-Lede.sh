@@ -72,8 +72,8 @@ rm -rf package-temp
 
 #创建自定义配置文件 - OpenWrt-x86-64
 
-#rm -f ./.config*
-#touch ./.config
+rm -f ./.config*
+touch ./.config
 
 #
 # ========================固件定制部分========================
@@ -178,8 +178,9 @@ CONFIG_PACKAGE_kmod-usb3=y
 # CONFIG_ZEROTIER_ENABLE_DEBUG is not set
 # CONFIG_ZEROTIER_ENABLE_SELFTEST is not set
 # 常用LuCI插件(启用):
-# 增加主题argon
-CONFIG_PACKAGE_luci-theme-argon=y
+# 增加adbyby
+CONFIG_PACKAGE_luci-app-adbyby-plus=y
+CONFIG_PACKAGE_adbyby=y
 # 增加多拨
 CONFIG_PACKAGE_luci-app-mwan3=y
 CONFIG_PACKAGE_luci-app-syncdial=y
