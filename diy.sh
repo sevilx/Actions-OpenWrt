@@ -27,3 +27,12 @@ sed -i 's/config internal themes/config internal themes\n    option Argon  \"\/l
 echo '删除旧版argon,链接新版'
 rm -rf package/lean/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+
+# 添加第三方软件包
+#git clone https://github.com/KFERMercer/luci-app-serverchan package/luci-app-serverchan
+#git clone https://github.com/kang-mk/luci-app-smartinfo package/luci-app-smartinfo
+#git clone https://github.com/Leo-Jo-My/luci-theme-opentomcat.git package/luci-theme-opentomcat
+#git clone https://github.com/Leo-Jo-My/luci-theme-leo.git package/luci-theme-leo
+#git clone https://github.com/Aslin-Ameng/luci-theme-Night.git package/luci-theme-Night
+#git clone https://github.com/Aslin-Ameng/luci-theme-Light.git package/luci-theme-Light
+#git clone https://github.com/Flowers-in-thorns/luci-app-vssr-coexist.git package/luci-app-vssr-coexist
