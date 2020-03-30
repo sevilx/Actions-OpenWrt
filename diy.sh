@@ -19,9 +19,9 @@ echo '修改时区'
 sed -i "s/'UTC'/'CST-8'\n        set system.@system[-1].zonename='Asia\/Shanghai'/g" package/base-files/files/bin/config_generate
 
 # 更改默认主题为Argon
-#sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' package/feeds/luci/luci/Makefile
-git clone https://github.com/jerrykuku/luci-theme-argon.git -b 18.06 package/luci-theme-argon_new
-sed -i 's/luci-theme-bootstrap/luci-theme-argon_new/g' package/feeds/luci/luci/Makefile
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' package/feeds/luci/luci/Makefile
+#git clone https://github.com/jerrykuku/luci-theme-argon.git -b 18.06 package/luci-theme-argon_new
+#sed -i 's/luci-theme-bootstrap/luci-theme-argon_new/g' package/feeds/luci/luci/Makefile
 
 #echo '去除默认bootstrap主题'
 #sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
