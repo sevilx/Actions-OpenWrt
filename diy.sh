@@ -36,3 +36,7 @@ git clone https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 #git clone https://github.com/Aslin-Ameng/luci-theme-Night.git package/luci-theme-Night
 #git clone https://github.com/Aslin-Ameng/luci-theme-Light.git package/luci-theme-Light
 #git clone https://github.com/Flowers-in-thorns/luci-app-vssr-coexist.git package/luci-app-vssr-coexist
+
+echo '修改banner'
+rm -rf package/base-files/files/etc/banner
+cp -f ../banner package/base-files/files/etc/
