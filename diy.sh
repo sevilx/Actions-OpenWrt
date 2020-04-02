@@ -15,9 +15,9 @@ sed -i 's/192.168.1.1/192.168.99.253/g' package/base-files/files/bin/config_gene
 echo '修改时区'
 sed -i "s/'UTC'/'CST-8'\n        set system.@system[-1].zonename='Asia\/Shanghai'/g" package/base-files/files/bin/config_generate
 
-# 更改默认主题为Argon
+# 更改lean的默认主题为Argon
 #sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' package/feeds/luci/luci/Makefile
-# 删除旧版argon,更改为新版
+# 删除旧版argon,拉去新源，设置新版argon为默认主题
 rm -rf ./package/lean/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-theme-argon.git -b 18.06 package/lean/luci-theme-argon
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' package/feeds/luci/luci/Makefile
