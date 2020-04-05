@@ -103,6 +103,27 @@ jobs:
         name: OpenWrt_bin
         path: openwrt/bin
 
+#    - name: Organize files
+#      id: organize
+#      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+#      run: |
+#        cd openwrt/bin/targets/*/*
+#        rm -rf packages
+#        echo "::set-env name=FIRMWARE::$PWD"
+#        echo "::set-output name=status::success"
+#    - name: Upload firmware directory
+#      uses: actions/upload-artifact@master
+#      if: steps.organize.outputs.status == 'success' && !cancelled()
+#      with:
+#        name: OpenWrt_firmware
+#        path: ${{ env.FIRMWARE }}
+
+#    - name: Upload firmware to cowtransfer
+#      if: env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
+#      run: |
+#        curl -sL https://git.io/cowtransfer | sh
+#        ./cowtransfer-uploader -s -p 8 ${FIRMWARE}
+
     - name: 整理文件
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
@@ -111,14 +132,17 @@ jobs:
           mkdir -p ./artifact/
           find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
           find openwrt/bin/targets/ -name "*uefi*img*" | xargs -i mv -f {} ./artifact/
-    - name: 上传固件
-      uses: actions/upload-artifact@master
-      with:
-        name: OpenWrt-Lede_firmware
-        path: ./artifact/
+          echo "::set-env name=FIRMWARE::$PWD"
+          echo "::set-output name=status::success"
+
+#    - name: 上传固件
+#      uses: actions/upload-artifact@master
+#      with:
+#        name: OpenWrt-Lede_firmware
+#        path: ./artifact/
 
     - name: Upload firmware to cowtransfer
       if: env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
         curl -sL https://git.io/cowtransfer | sh
-        ./cowtransfer-uploader -s -p 8 OpenWrt-Lede_firmware.zip
+        ./cowtransfer-uploader -s -p 8 ${FIRMWARE}
