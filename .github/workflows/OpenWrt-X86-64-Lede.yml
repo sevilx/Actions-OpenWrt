@@ -103,28 +103,6 @@ jobs:
         name: OpenWrt_bin
         path: openwrt/bin
 
-#只上传精简后img的文件
-#    - name: 整理文件
-#      id: organize
-#      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
-#      run: |
-#          rm -rf ./artifact/
-#          mkdir -p ./artifact/
-#          find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
-#          find openwrt/bin/targets/ -name "*uefi*img*" | xargs -i mv -f {} ./artifact/
-#    - name: 上传固件
-#      uses: actions/upload-artifact@master
-#      with:
-#        name: OpenWrt-Lede_firmware
-#        path: ./artifact/
-#    - name: Upload firmware to cowtransfer
-#      if: env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
-#      run: |
-#        curl -sL https://git.io/cowtransfer | sh
-#        ./cowtransfer-uploader -b 2621440 -s -p 99 -t 3 --hash ./artifact/ > cowtransfer.txt
-#        cat cowtransfer.txt
-#        echo "::set-env name=COWTRANSFER_URL::$(cat cowtransfer.txt | grep https | cut -f2 -d" ")"
-
 #上传固件
     - name: Organize files
       id: organize
@@ -161,3 +139,12 @@ jobs:
         echo "🚀 Auto build | 自动编译" >> release.txt
         echo "🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})" >> release.txt
         echo "::set-output name=status::success"
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v1
+      if: steps.tag.outputs.status == 'success' && !cancelled()
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      with:
+        tag_name: ${{ env.RELEASE_TAG }}
+        body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
