@@ -126,7 +126,7 @@ jobs:
       if: env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
         curl -sL https://git.io/cowtransfer | sh
-        ./cowtransfer-uploader -b 2621440 -s -p 99 -t 3 --hash ${FIRMWARE}/openwrt-x86-64-combined-squashfs.img.gz > cowtransfer.txt
+        ./cowtransfer-uploader -b 2621440 -s -p 99 -t 3 --hash ${{ env.FIRMWARE }}/openwrt-x86-64-combined-squashfs.img.gz > cowtransfer.txt
         cat cowtransfer.txt
         echo "::set-env name=COWTRANSFER_URL::$(cat cowtransfer.txt | grep https | cut -f2 -d" ")"
     - name: Generate tag
