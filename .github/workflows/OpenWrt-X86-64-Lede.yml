@@ -125,7 +125,7 @@ jobs:
 #        cat cowtransfer.txt
 #        echo "::set-env name=COWTRANSFER_URL::$(cat cowtransfer.txt | grep https | cut -f2 -d" ")"
 
-上传固件
+#上传固件
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
