@@ -11,13 +11,11 @@ name: Build-OpenWrt-Lede
 on:
 #  release:
 #    types: [published]
-  push:
+#  push:
 #    branches:
 #      - master
-    paths:
-      - '.config'
-#  watch:
-#    types: [started]
+#    paths:
+#      - '.config'
 # 定时触发
 #  schedule:
 #    - cron: 30 14 15 * *
