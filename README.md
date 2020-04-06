@@ -3,7 +3,7 @@
 Build OpenWrt firware [Lean's OpenWrt](https://github.com/coolsnowwolf/lede) using GitHub Actions  
 Hereby thank P3TERX for his amazing job: https://github.com/P3TERX/Actions-OpenWrt/
 
-[![LICENSE](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square&label=LICENSE)](https://github.com/P3TERX/Actions-OpenWrt/blob/master/LICENSE)
+[![LICENSE](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square&label=LICENSE)](https://github.com/sevilx/Actions-OpenWrt/blob/master/LICENSE)
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/sevilx/Actions-OpenWrt?style=for-the-badge&label=Download)](https://github.com/sevilx/Actions-OpenWrt/releases/latest)
 
