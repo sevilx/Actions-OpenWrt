@@ -32,6 +32,7 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
+  UPLOAD_WETRANSFER: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
@@ -126,17 +127,25 @@ jobs:
     - name: Upload firmware to cowtransfer
       if: env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
-        curl -fsSL https://git.io/cowtransfer | sh
-        ./cowtransfer-uploader -b 2621440 -s -p 99 -t 3 --hash --silent ${{ env.FIRMWARE }}/openwrt-x86-64-combined-squashfs.img.gz > cowtransfer.txt
-        cat cowtransfer.txt
-        echo "::set-env name=COWTRANSFER_URL::$(cat cowtransfer.txt | grep https | cut -f2 -d" ")"
+        curl -fsSL git.io/file-transfer | sh
+        ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${{ env.FIRMWARE }}/openwrt-x86-64-combined-squashfs.img.gz 2>&1 | tee cowtransfer.log
+        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
+        echo "::set-env name=COWTRANSFER_URL::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
+    - name: Upload firmware to WeTransfer
+      if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
+      run: |
+        curl -fsSL git.io/file-transfer | sh
+        ./transfer wet -s -p 16 --no-progress ${{ env.FIRMWARE }}/openwrt-x86-64-combined-squashfs.img.gz 2>&1 | tee wetransfer.log
+        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+        echo "::set-env name=WETRANSFER_URL::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
     - name: Generate tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
         echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d-%H")"
-        echo "🚀 Auto build | 自动编译" >> release.txt
-        echo "🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})" >> release.txt
+        echo "🚀 Auto build" >> release.txt
+        echo "🔗 [Cowtransfer](${{ env.COWTRANSFER_URL }})" >> release.txt
+        echo "🔗 [WeTransfer](${{ env.WETRANSFER_URL }})" >> release.txt
         echo "::set-output name=status::success"
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
