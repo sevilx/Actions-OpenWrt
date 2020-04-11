@@ -120,12 +120,12 @@ jobs:
         path: ${{ env.FIRMWARE }}
     - name: Upload Combined DVD Image
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success'
+      if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: OpenWrt_firmware-combined-squashfs.img
         path: ${{ env.FIRMWARE }}/openwrt-x86-64-combined-squashfs.img.gz
     - name: Upload firmware to cowtransfer
-      if: env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
+      if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${{ env.FIRMWARE }}/openwrt-x86-64-combined-squashfs.img.gz 2>&1 | tee cowtransfer.log
