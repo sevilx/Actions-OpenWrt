@@ -25,7 +25,7 @@ on:
     types: [started]
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/KFERMercer/OpenWrt
   REPO_BRANCH: master
   CONFIG_FILE: x86_64-Lede.config
   DIY_SH: diy.sh
