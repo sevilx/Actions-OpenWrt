@@ -62,8 +62,10 @@ jobs:
     - name: Clone source code
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: Clone helloworld
-      run: git clone https://github.com/sevilx/helloworld.git package/lean/luci-app-ssr-plus
+    - name: Load latest helloworld
+      run: |
+        git clone https://github.com/fw876/helloworld --depth=1
+        cp -rf ./helloworld/luci-app-ssr-plus ./package/lean/
 
     - name: Update feeds
       run: |
