@@ -65,8 +65,8 @@ jobs:
     - name: Load latest helloworld
       run: |
         cd openwrt
-        git clone https://github.com/fw876/helloworld --depth=1
-        cp -rf ./helloworld/luci-app-ssr-plus ./package/lean/
+        git clone https://github.com/fw876/helloworld.git --depth=1 ./tmp/helloworld
+        cp -rf ./tmp/helloworld/luci-app-ssr-plus ./package/lean/
 
     - name: Update feeds
       run: |
