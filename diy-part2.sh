@@ -10,7 +10,7 @@
 #sed -i 's/OpenWrt/OpenWrt-Ben/g' package/base-files/files/bin/config_generate
 
 #echo '修改默认地址'
-sed -i 's/192.168.1.1/192.168.99.253/g' package/base-files/files/bin/config_generate
+#sed -i 's/192.168.1.1/192.168.99.253/g' package/base-files/files/bin/config_generate
 
 # 修改版本
 sed -i "s/OpenWrt /Ben build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
