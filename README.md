@@ -1,6 +1,6 @@
 # Actions-OpenWrt
 
-Build OpenWrt firware [Lean's OpenWrt](https://github.com/coolsnowwolf/lede) using GitHub Actions  
+Build OpenWrt firware using GitHub Actions  
 Hereby thank P3TERX for his amazing job: https://github.com/P3TERX/Actions-OpenWrt/
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/sevilx/Actions-OpenWrt?style=for-the-badge&label=Download)](https://github.com/sevilx/Actions-OpenWrt/releases/latest)
@@ -14,7 +14,7 @@ Hereby thank P3TERX for his amazing job: https://github.com/P3TERX/Actions-OpenW
 - Edit the workflow file you desire，uncomment push section 3 lines together and submit the commit.(Other 2 methods wait you to discover)
 - The build starts automatically. Progress can be viewed on the Actions page.
 - When the build is complete, click the `Artifacts` button in the upper right corner of the Actions page to download the binaries.
-- Default Web Admin IP: `192.168.99.253`, username `root`，password `password`
+- Default Web Admin IP: `192.168.1.1`, username `root`，password `password`
 
 ## Acknowledgments
 
