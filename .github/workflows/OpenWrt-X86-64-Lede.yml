@@ -30,6 +30,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: x86_64-Lede.config
   DIY_P1_SH: diy-part1.sh
+  DIY_BANNER: banner
   DIY_P2_SH: diy-part2.sh
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: false
@@ -78,6 +79,12 @@ jobs:
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
+
+    - name: diy_banner
+      run: |
+        cd openwrt
+        rm -rf package/base-files/files/etc/banner
+        mv $GITHUB_WORKSPACE/$DIY_BANNER package/base-files/files/etc/
 
     - name: Load custom configuration
       run: |
