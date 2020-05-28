@@ -30,9 +30,9 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git -b 18.06 package/lea
 #echo '去除默认bootstrap主题'
 #sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 
-echo '修改banner'
-rm -rf package/base-files/files/etc/banner
-cp -f ../banner package/base-files/files/etc/
+#echo '修改banner'
+#rm -rf package/base-files/files/etc/banner
+#cp -f ../banner package/base-files/files/etc/
 
 # Add kernel build user
 [ -z $(grep "CONFIG_KERNEL_BUILD_USER=" .config) ] &&
