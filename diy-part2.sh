@@ -35,13 +35,14 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git -b 18.06 package/lea
 #cp -f ../banner package/base-files/files/etc/
 
 #add bypass
-git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
-git clone https://github.com/garypang13/luci-app-dnsfilter package/luci-app-dnsfilter
-git clone https://github.com/project-lede/luci-app-godproxy package/luci-app-godproxy
+git clone https://github.com/garypang13/openwrt-packages.git package/openwrt-packages
 
 svn co https://github.com/garypang13/openwrt-packages/tree/master/luci-app-smartdns
 svn co https://github.com/garypang13/openwrt-packages/tree/master/tcping
 svn co https://github.com/garypang13/openwrt-packages/tree/master/lua-maxminddb
+svn co https://github.com/garypang13/openwrt-packages/tree/master/chinadns-ng
+svn co https://github.com/garypang13/openwrt-packages/tree/master/trojan-go
+svn co https://github.com/garypang13/openwrt-packages/tree/master/trojan-plus
 
 #修改bypass的makefile
 find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
