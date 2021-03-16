@@ -34,19 +34,6 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git -b 18.06 package/lea
 #rm -rf package/base-files/files/etc/banner
 #cp -f ../banner package/base-files/files/etc/
 
-#add bypass
-git clone https://github.com/garypang13/openwrt-packages.git package/openwrt-packages
-
-svn co https://github.com/garypang13/openwrt-packages/tree/master/luci-app-smartdns
-svn co https://github.com/garypang13/openwrt-packages/tree/master/tcping
-svn co https://github.com/garypang13/openwrt-packages/tree/master/lua-maxminddb
-svn co https://github.com/garypang13/openwrt-packages/tree/master/chinadns-ng
-svn co https://github.com/garypang13/openwrt-packages/tree/master/trojan-go
-svn co https://github.com/garypang13/openwrt-packages/tree/master/trojan-plus
-
-#修改bypass的makefile
-find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
-find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 
 # Add kernel build user
 [ -z $(grep "CONFIG_KERNEL_BUILD_USER=" .config) ] &&
