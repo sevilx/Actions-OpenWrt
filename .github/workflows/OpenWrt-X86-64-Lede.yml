@@ -81,6 +81,7 @@ jobs:
         cd package/lean
         git clone https://github.com/garypang13/luci-app-bypass.git
         git clone https://github.com/garypang13/luci-app-dnsfilter.git
+        svn co https://github.com/garypang13/openwrt-packages/trunk/smartdns-le package/smartdns-le
         cd .. && cd ..
         $GITHUB_WORKSPACE/$DIY_P1_SH
     - name: Update feeds
