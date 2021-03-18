@@ -15,13 +15,17 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 
 
+
+
+git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
+git clone https://github.com/garypang13/luci-app-dnsfilter package/luci-app-dnsfilter
+git clone https://github.com/project-lede/luci-app-godproxy package/luci-app-godproxy
+git clone https://github.com/garypang13/openwrt-packages/tree/master/smartdns-le package/lean/smartdns-le
+svn co https://github.com/garypang13/openwrt-packages/tree/master/tcping
+svn co https://github.com/garypang13/openwrt-packages/tree/master/lua-maxminddb
 #修改bypass的makefile
-#find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
-#find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
-
-svn co https://github.com/garypang13/openwrt-packages/trunk/smartdns-le package/smartdns-le
-git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
-
+find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
+find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
 
 
 # 添加第三方软件包
