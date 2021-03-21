@@ -19,10 +19,13 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
 git clone https://github.com/garypang13/luci-app-dnsfilter package/luci-app-dnsfilter
-git clone https://github.com/project-lede/luci-app-godproxy package/luci-app-godproxy
-svn co https://github.com/garypang13/openwrt-packages/trunk/smartdns-le package/smartdns-le
-svn co https://github.com/garypang13/openwrt-packages/tree/master/tcping
-svn co https://github.com/garypang13/openwrt-packages/tree/master/lua-maxminddb
+git clone https://github.com/garypang13/smartdns-le package/smartdns-le package/smartdns-le
+svn co https://github.com/garypang13/openwrt-packages/tree/master/tcping package/tcping
+svn co https://github.com/garypang13/openwrt-packages/tree/master/lua-maxminddb package/lua-maxminddb
+svn co https://github.com/garypang13/openwrt-packages/tree/master/chinadns-ng package/chinadns-ng
+svn co https://github.com/garypang13/openwrt-packages/tree/master/trojan-go package/trojan-go
+svn co https://github.com/garypang13/openwrt-packages/tree/master/trojan-plus package/trojan-plus
+
 #修改bypass的makefile
 find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
 find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
