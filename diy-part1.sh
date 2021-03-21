@@ -19,7 +19,7 @@ sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
 git clone https://github.com/garypang13/luci-app-dnsfilter package/luci-app-dnsfilter
-git clone https://github.com/garypang13/smartdns-le package/smartdns-le package/smartdns-le
+git clone https://github.com/garypang13/smartdns-le package/smartdns-le
 svn co https://github.com/garypang13/openwrt-packages/tree/master/tcping package/tcping
 svn co https://github.com/garypang13/openwrt-packages/tree/master/lua-maxminddb package/lua-maxminddb
 svn co https://github.com/garypang13/openwrt-packages/tree/master/chinadns-ng package/chinadns-ng
